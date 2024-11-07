@@ -5,7 +5,7 @@ import numpy as np
 app = Flask(__name__)
 
 # Carregando o modelo treinado
-model = joblib.load('modelo_regressao_linear.pkl')
+model = joblib.load('app/modelo_regressao_linear.pkl')
 
 
 @app.route('/prever', methods=['POST'])
