@@ -6,11 +6,11 @@ Este projeto consiste em uma API desenvolvida com Flask, que utiliza um modelo d
 
 ## Tecnologias Utilizadas
 
-![Flask](https://img.shields.io/badge/Flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white) Framework para criação de APIs web.
-![scikit-learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white) Biblioteca para aprendizado de máquina (Machine Learning), utilizada para criar e treinar o modelo de Regressão Linear.
-![Pandas](https://img.shields.io/badge/Pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white) Biblioteca para manipulação e análise de dados.
-![NumPy](https://img.shields.io/badge/NumPy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white) Biblioteca para cálculos numéricos.
-![joblib](https://img.shields.io/badge/joblib-%23A7A8AA.svg?style=for-the-badge&logo=joblib&logoColor=white) Utilizada para salvar e carregar o modelo treinado.
+- ![Flask](https://img.shields.io/badge/Flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white) Framework para criação de APIs web.
+- ![scikit-learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white) Biblioteca para aprendizado de máquina (Machine Learning), utilizada para criar e treinar o modelo de Regressão Linear.
+- ![Pandas](https://img.shields.io/badge/Pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white) Biblioteca para manipulação e análise de dados.
+- ![NumPy](https://img.shields.io/badge/NumPy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white) Biblioteca para cálculos numéricos.
+- ![joblib](https://img.shields.io/badge/joblib-%23A7A8AA.svg?style=for-the-badge&logo=joblib&logoColor=white) Utilizada para salvar e carregar o modelo treinado.
 
 ## Funcionalidades
 
