@@ -1,36 +1,38 @@
 from flask import Flask, request, jsonify
 import joblib
 import numpy as np
+import pandas as pd
+
+model = joblib.load('app/modelo_regressao_linear.pkl')
 
 app = Flask(__name__)
 
-# Carregando o modelo treinado
-model = joblib.load('app/modelo_regressao_linear.pkl')
-
-
 @app.route('/prever', methods=['POST'])
-def prever():
-    # Obtendo dados da requisição
-    dados = request.get_json()
+def predict():
+    data = request.get_json()
 
-    # Extraindo características
-    tamanho = dados.get('sqft_living')
-    quartos = dados.get('bedrooms')
-    banheiros = dados.get('bathrooms')
-    idade = dados.get('idade')
+    required_fields = ['sqft_living', 'bedrooms', 'bathrooms', 'idade']
+    for field in required_fields:
+        if field not in data:
+            return jsonify({"error": f"Campo '{field}' é obrigatório"}), 400
 
-    # Preparando os dados para a previsão
-    entrada = np.array([[tamanho, quartos, banheiros, idade]])
+    try:
+        sqft_living = data['sqft_living']
+        bedrooms = data['bedrooms']
+        bathrooms = data['bathrooms']
+        idade = data['idade']
+        
+        input_data = pd.DataFrame([[sqft_living, bedrooms, bathrooms, idade]], columns=['sqft_living', 'bedrooms', 'bathrooms', 'idade'])
+        
+        predicted_price = np.expm1(model.predict(input_data))[0]
 
-    # Fazendo a previsão
-    preco_previsto = model.predict(entrada)
+        # Formatar o preço com R$ e 2 casas decimais
+        formatted_price = f"US$ {predicted_price:,.2f}"
 
-    # Formatar o preço previsto em reais
-    preco_formatado = f"R$ {preco_previsto[0]:,.2f}".replace(',', 'X').replace('.', ',').replace('X', '.')
+        return jsonify({"preco_previsto": formatted_price}), 200
 
-    # Retornando o resultado formatado
-    return jsonify({'preco_previsto': preco_formatado})
-
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
