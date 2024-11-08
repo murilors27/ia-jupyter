@@ -1,44 +1,84 @@
-# Análise de Preços de Casas
+# Previsão de Preço de Imóveis - API de Regressão Linear
 
-Este projeto realiza uma análise de dados de preços de casas e disponibiliza uma API para previsão de preços, utilizando aprendizado de máquina.
+## Descrição
 
-## Dependências
+Este projeto consiste em uma API desenvolvida com Flask, que utiliza um modelo de Regressão Linear treinado para prever o preço de imóveis com base em características como área (sqft), número de quartos, número de banheiros e idade da casa. A API permite que os usuários forneçam essas características em formato JSON e obtenham uma previsão do preço da casa.
 
-Todas as dependências do projeto estão listadas no arquivo `requirements.txt`.
+## Tecnologias Utilizadas
 
-### Instalação das Dependências
+![Flask](https://img.shields.io/badge/Flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white) Framework para criação de APIs web.
+![scikit-learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white) Biblioteca para aprendizado de máquina (Machine Learning), utilizada para criar e treinar o modelo de Regressão Linear.
+![Pandas](https://img.shields.io/badge/Pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white) Biblioteca para manipulação e análise de dados.
+![NumPy](https://img.shields.io/badge/NumPy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white) Biblioteca para cálculos numéricos.
+![joblib](https://img.shields.io/badge/joblib-%23A7A8AA.svg?style=for-the-badge&logo=joblib&logoColor=white) Utilizada para salvar e carregar o modelo treinado.
 
-Para instalar as dependências, execute o seguinte comando no terminal:
+## Funcionalidades
 
-pip install -r requirements.txt
+- **Previsão de Preço**: A API permite prever o preço de uma casa com base em quatro parâmetros:
+  - Área da casa (sqft_living)
+  - Número de quartos
+  - Número de banheiros
+  - Idade da casa
 
-## Como Executar:
+- **Formatação do Retorno**: O preço previsto é retornado com a formatação monetária em **R$**, com duas casas decimais.
 
-O notebook analise_dados.ipynb contém a análise exploratória e o treinamento do modelo de regressão linear. Abra-o para ver o processo de análise de dados e criação do modelo.
+## Como Usar
 
-## Executando a API:
+### Pré-requisitos
 
-A API foi criada utilizando Flask. Ela permite fazer previsões do preço de uma casa com base nos atributos fornecidos.
-Para iniciar a API, no diretório app/, execute:
-python app/api.py
+- Python 3.x
+- Instalar as dependências do projeto
 
-A API estará disponível em http://127.0.0.1:5000.
+### Instalação
 
-## Endpoints da API
-POST /predict
-Endpoint para prever o preço da casa.
-Parâmetros esperados no corpo da requisição (JSON):
+1. Clone este repositório para sua máquina local:
+    ```bash
+    git clone https://github.com/seu-usuario/nome-do-repositorio.git
+    cd nome-do-repositorio
+    ```
 
-sqft_living: Área em pés quadrados.
-bedrooms: Número de quartos.
-bathrooms: Número de banheiros.
-idade: Idade do imóvel (em anos).
+2. Crie um ambiente virtual (opcional, mas recomendado):
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # No Windows, use venv\Scripts\activate
+    ```
 
-Exemplo de Requisição:
-POST /predict
-{
-    "sqft_living": 2000,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "idade": 10
-}
+3. Instale as dependências do projeto:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+### Executando a API
+
+1. Inicie a aplicação Flask:
+    ```bash
+    python app.py
+    ```
+
+2. A API estará disponível no endereço:
+    ```
+    http://127.0.0.1:5000/
+    ```
+
+### Endpoint
+
+#### **POST /prever**
+
+Este endpoint recebe um JSON com os dados da casa e retorna o preço previsto.
+
+Estrutura do Projeto
+bash
+Copiar código
+├── app.py                     # Arquivo principal com a API Flask
+├── app/
+│   ├── modelo_regressao_linear.pkl  # Modelo treinado em Regressão Linear
+│   └── ...                     # Outros arquivos do projeto
+├── requirements.txt            # Dependências do projeto
+├── README.md                   # Este arquivo
+└── ...                         # Outros arquivos
+
+Como Treinar o Modelo:
+Execute o script em: notebooks/treinamento_modelo.ipynb para treinar e salvar o modelo.
+O modelo será salvo como modelo_regressao_linear.pkl e poderá ser carregado pela API.
+Obs.: Caso o modelo seja gerado dentro de /notebooks, mova-o para /app, para que ele
+fique no mesmo diretório que a api.
